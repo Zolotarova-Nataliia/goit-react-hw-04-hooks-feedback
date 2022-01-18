@@ -20,10 +20,11 @@ export const Button = styled.button`
   background-color: #e3d6c8;
   color: #d9b597;
   margin-right: 15px;
-  transition: background-color 500ms, color 500ms;
+  transition: transform 500ms ease, background-color 500ms, color 500ms;
   &:hover {
     color: #b6846b;
     background-color: #d9b597;
+    transform: scale(1.1);
   }
 `;
 export const ButtonWrap = styled.div`
