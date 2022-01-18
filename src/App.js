@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Statistics from "./components/Feedback/Statistics";
 import FeedbackOptions from "./components/Feedback/FeedbackOptions";
+import { IoIosHeart, IoIosHeartHalf, IoIosHeartDislike } from "react-icons/io";
 import "./App.css";
 const options = [
   {
     label: "Good",
     key: "good",
+    icon: <IoIosHeart />,
   },
-  { label: "Neutral", key: "neutral" },
-  { label: "Bad", key: "bad" },
+  { label: "Neutral", key: "neutral", icon: <IoIosHeartHalf /> },
+  { label: "Bad", key: "bad", icon: <IoIosHeartDislike /> },
 ];
 class App extends Component {
   state = {

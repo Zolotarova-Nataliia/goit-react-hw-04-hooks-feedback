@@ -1,11 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { SectionStyled, Title } from "./Feedback.styled";
+import { GiCoffeeBeans } from "react-icons/gi";
 
 const Section = ({ title, children }) => (
-  <section>
-    <h1>{title}</h1>
+  <SectionStyled>
+    <Title>
+      <GiCoffeeBeans />
+      {title}
+      <GiCoffeeBeans />
+    </Title>
+
     {children}
-  </section>
+  </SectionStyled>
 );
 
 Section.propTypes = {

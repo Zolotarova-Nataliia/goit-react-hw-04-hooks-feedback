@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Section from "./Section";
 import Notification from "./Notification";
+import { List, ListItem, Icon } from "./Feedback.styled";
+
 class Statistics extends Component {
   render() {
     const { options, total, positiveFeedback } = this.props;
@@ -9,21 +11,22 @@ class Statistics extends Component {
     return (
       <Section title="Statistic">
         {total !== 0 ? (
-          <ul>
+          <List>
             {options.map((option) => (
-              <li key={option.key}>
+              <ListItem key={option.key}>
+                <Icon>{option.icon}</Icon>
                 {option.label}: <span>{option.value}</span>
-              </li>
+              </ListItem>
             ))}
-            <li>
+            <ListItem>
               Total:
               <span>{total}</span>
-            </li>
-            <li>
+            </ListItem>
+            <ListItem>
               Positive feedback:
               <span>{positiveFeedback}%</span>
-            </li>
-          </ul>
+            </ListItem>
+          </List>
         ) : (
           <Notification message="There is no feedback" />
         )}
