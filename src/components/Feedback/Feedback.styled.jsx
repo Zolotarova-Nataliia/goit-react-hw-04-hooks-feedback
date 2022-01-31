@@ -9,7 +9,7 @@ export const SectionStyled = styled.section`
   justify-content: center;
 `;
 export const Title = styled.h1`
-  color: #b6846b;
+  color: #654321;
 `;
 export const Button = styled.button`
   width: 90px;
@@ -17,13 +17,16 @@ export const Button = styled.button`
   border-radius: 10px;
   outline: none;
   padding: 10px;
-  background-color: #e3d6c8;
+  background-color: #8b6245;
   color: #d9b597;
   margin-right: 15px;
+  color: #8b6245;
+  background-color: #d9b597;
+  cursor: pointer;
   transition: transform 500ms ease, background-color 500ms, color 500ms;
   &:hover {
-    color: #b6846b;
-    background-color: #d9b597;
+    background-color: #8b6245;
+    color: #d9b597;
     transform: scale(1.1);
   }
 `;
@@ -41,12 +44,12 @@ export const ListItem = styled.li`
   align-items: center;
   justify-content: center;
   padding: 5px;
-  color: #b6846b;
+  color: #8b6245;
   transition: color 500ms;
 `;
 export const Icon = styled.span`
   margin-right: 5px;
 `;
 export const NotificationStyled = styled.p`
-  color: #d9b597;
+  color: #8b6245;
 `;

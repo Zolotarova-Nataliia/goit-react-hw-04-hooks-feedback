@@ -5,7 +5,7 @@ import { Button, ButtonWrap } from "./Feedback.styled";
 const FeedbackOptions = ({ options, onLeaveFeedback }) => (
   <Section title="Please leave feedback">
     <ButtonWrap>
-      {options.map((option, i) => (
+      {options.map((option) => (
         <Button
           type="button"
           key={option.key}

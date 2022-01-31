@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Statistics from "./components/Feedback/Statistics";
 import FeedbackOptions from "./components/Feedback/FeedbackOptions";
 import { IoIosHeart, IoIosHeartHalf, IoIosHeartDislike } from "react-icons/io";
@@ -12,44 +12,48 @@ const options = [
   { label: "Neutral", key: "neutral", icon: <IoIosHeartHalf /> },
   { label: "Bad", key: "bad", icon: <IoIosHeartDislike /> },
 ];
-class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
-  onLeaveFeedback = (key) => {
-    this.setState((prevState) => {
-      return { [key]: prevState[key] + 1 };
-    });
-  };
-  countTotalFeedback() {
-    return options.reduce((total, x) => total + this.state[x.key], 0);
-  }
-  countPositiveFeedbackPercentage = () => {
-    const total = this.countTotalFeedback();
-    return total > 0 ? Math.ceil((this.state.good * 100) / total) : 0;
+export function App() {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+  const [totalFeedback, setTotalFeedback] = useState(0);
+
+  const onLeaveFeedback = (key) => {
+    switch (key) {
+      case "good":
+        setGood((prevState) => prevState + 1);
+        break;
+      case "neutral":
+        setNeutral((prevState) => prevState + 1);
+        break;
+      case "bad":
+        setBad((prevState) => prevState + 1);
+        break;
+      default:
+        alert("There is no feedback");
+    }
   };
 
-  render() {
-    const optionsWithValue = options.map((option) => ({
-      ...option,
-      value: this.state[option.key],
-    }));
-    return (
-      <div className="App">
-        <FeedbackOptions
-          options={options}
-          onLeaveFeedback={this.onLeaveFeedback}
-        />
-        <Statistics
-          options={optionsWithValue}
-          total={this.countTotalFeedback()}
-          positiveFeedback={this.countPositiveFeedbackPercentage()}
-        />
-      </div>
-    );
-  }
+  useEffect(() => {
+    setTotalFeedback(good + bad + neutral);
+  }, [good, neutral, bad]);
+
+  const countPositiveFeedbackPercentage = () => {
+    const total = totalFeedback;
+    return total > 0 ? Math.ceil((good * 100) / total) : 0;
+  };
+  const optionsWithValue = options.map((option) => ({
+    ...option,
+    value: option.key === "good" ? good : option.key === "bad" ? bad : neutral,
+  }));
+  return (
+    <div className="App">
+      <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
+      <Statistics
+        options={optionsWithValue}
+        total={totalFeedback}
+        positiveFeedback={countPositiveFeedbackPercentage()}
+      />
+    </div>
+  );
 }
-
-export default App;
